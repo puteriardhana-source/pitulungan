@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pitulungan Sharing Support</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;1,500;1,700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { pit: "#18358B", pitd: "#12296b" },
+  fontFamily: { sans: ["Inter", "sans-serif"], serif: ["Playfair Display", "serif"] }
+}}};
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: .7s ease; }
+  .reveal.show { opacity: 1; transform: none; }
+  .img-box { background: #2a3f8f; overflow: hidden; }
+  .img-box img { transition: transform .6s; }
+  .img-box:hover img { transform: scale(1.05); }
+</style>
+</head>
+<body class="font-sans text-gray-900 bg-white">
+
+<!-- NAVBAR -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 text-white transition-all duration-300">
+  <div class="max-w-[1800px] mx-auto px-5 md:px-12 h-20 md:h-24 flex items-center justify-between">
+    <a href="#/" class="flex items-center gap-3 text-xl md:text-2xl font-semibold">
+      <img src="image/logo.png" alt="" class="w-11 h-11 md:w-14 md:h-14 object-contain"> Pitulungan
+    </a>
+    <nav class="hidden md:flex gap-10 text-lg" id="links"></nav>
+    <button id="burger" class="md:hidden text-3xl" aria-label="Menu">☰</button>
+  </div>
+  <nav id="mobile" class="hidden md:hidden bg-pitd px-5 pb-5 flex-col gap-4 text-lg"></nav>
+</header>
+
+<main id="app"></main>
+
+<footer class="bg-pit text-white">
+  <div class="max-w-[1800px] mx-auto px-5 md:px-12 pt-14 pb-10 grid md:grid-cols-2 gap-10">
+    <div>
+      <div class="flex items-center gap-4">
+        <img src="image/logo.png" alt="Logo Pitulungan" class="w-16 h-16 object-contain">
+        <p class="tracking-widest">Pitulungan<br><b>Space for Sharing and Support</b></p>
+      </div>
+      <p class="tracking-widest mt-8 mb-3 text-lg">Ikuti Kami</p>
+      <div id="socials" class="flex flex-col gap-3 tracking-wider"></div>
+    </div>
+    <div class="md:text-right">
+      <p class="tracking-widest mb-4 text-lg">Utama</p>
+      <div id="flinks" class="flex flex-col gap-3 tracking-wider"></div>
+    </div>
+  </div>
+  <div class="max-w-[1800px] mx-auto px-5 md:px-12">
+    <p class="border-t border-white/30 py-6 text-xs tracking-wider">Copyright © Pitulungan Sharing Support 2026. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+const D = window.DATA, C = D.contact, $ = s => document.querySelector(s);
+const NAV = [["About Us","#/about"],["Product Catalog","#/catalog"],["Facilities","#/facilities"],["Community & Events","#/events"],["Contact & Location","#/contact"]];
+const rp = n => "Rp" + Number(n).toLocaleString("id-ID");
+const ic = (p, fill = false) => `<svg viewBox="0 0 24 24" class="w-5 h-5" fill="${fill ? "currentColor" : "none"}" stroke="${fill ? "none" : "currentColor"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ICON = {
+  pin: ic('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>'),
+  phone: ic('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>'),
+  mail: ic('<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>'),
+  ig: ic('<rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>'),
+  tt: ic('<path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>', true)
+};
+const img = (src, cls = "") => `<img src="${src}" alt="" loading="lazy" class="w-full h-full object-cover ${cls}" onerror="this.style.display='none'">`;
+
+// nav + footer
+$("#links").innerHTML = NAV.map(([t, h]) => `<a href="${h}" class="hover:opacity-70">${t}</a>`).join("");
+$("#mobile").innerHTML = NAV.map(([t, h]) => `<a href="${h}">${t}</a>`).join("");
+$("#flinks").innerHTML = NAV.map(([t, h]) => `<a href="${h}" class="hover:underline">${t}</a>`).join("");
+$("#socials").innerHTML = `
+  <a href="${C.instagram}" target="_blank" rel="noopener" class="flex items-center gap-3 hover:underline">${ICON.ig} @pitulungan.sharingsupport</a>
+  <a href="${C.tiktok}" target="_blank" rel="noopener" class="flex items-center gap-3 hover:underline">${ICON.tt} @pitulungansharingsupport</a>`;
+$("#burger").onclick = () => { const m = $("#mobile"); m.classList.toggle("hidden"); m.classList.toggle("flex"); };
+addEventListener("scroll", () => $("#nav").classList.toggle("bg-pit/95", scrollY > 60));
+
+// shared pieces
+const hero = (title) => `
+<section class="relative h-[60vh] min-h-[380px] grid place-items-center text-white text-center bg-pitd bg-cover bg-center"
+  style="background-image:linear-gradient(#0007,#000b),url(${D.hero})">
+  <div><h1 class="font-serif italic text-5xl md:text-7xl px-4">${title}</h1>
+  <p class="mt-5"><a href="#/" class="hover:underline">Home</a> &gt; ${title}</p></div>
+</section>`;
+const btn = (t, h) => `<a href="${h}" class="inline-block bg-white text-pit font-bold px-8 py-3 rounded-xl shadow-lg hover:-translate-y-1 transition">${t} →</a>`;
+
+// PAGES
+const pages = {
+home: () => `
+<section class="relative min-h-[85vh] flex items-center text-white bg-pitd bg-cover bg-center" style="background-image:linear-gradient(#0004,#0008),url(${D.hero})">
+  <div class="w-full max-w-6xl mx-auto px-5 pt-24 pb-16 reveal">
+    <h1 class="text-9xl md:text-20xl font-medium leading-[1.05]">Pitulungan<br><span class="font-serif italic font-normal text-indigo-300">Sharing Support</span></h1>
+    <p class="mt-6 max-w-md text-sm md:text-base">Ruang hangat untuk berbagi cerita, bercengkrama, dan menikmati sajian seduhan kopi slowbar. Tempat aman bagi komunitas, karya kreatif, dan ide-ide baru.</p>
+  </div>
+</section>
+<section id="about" class="bg-pit text-white py-20">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-x-16 gap-y-12 items-center">
+    <div class="reveal">
+      <div class="flex items-center gap-6 mb-6">
+        <h2 class="font-serif italic text-6xl md:text-7xl whitespace-nowrap">About us</h2>
+        <span class="hidden md:block flex-1 h-px bg-white"></span>
+      </div>
+      <p>Pitulungan : Space for Sharing and Support hadir sebagai ruang berkumpul untuk saling bertukar cerita dan melepaskan penat setelah rutinitas harian.</p>
+    </div>
+    <div class="img-box rounded-2xl aspect-square md:w-4/5 md:ml-auto reveal">${img(D.about[0])}</div>
+    <div class="img-box rounded-2xl aspect-square md:w-4/5 md:mx-auto reveal">${img(D.about[1])}</div>
+    <p class="italic text-lg md:text-right reveal">Kami percaya bahwa secangkir minuman terbaik selalu lahir dari suasana yang nyaman, tenang dengan kebersamaan yang hangat.</p>
+  </div>
+</section>
+<section class="relative min-h-[90vh] md:min-h-[130vh] flex items-start justify-center text-center text-white bg-pitd bg-cover bg-center" style="background-image:linear-gradient(#0005,#0002),url(${D.cta})">
+  <div class="reveal px-5 pt-16 md:pt-20">
+    <p class="font-serif italic text-2xl md:text-4xl mb-6">Sebuah cara untuk lebih dekat dan merasakan ketenangan</p>
+    <a href="#/catalog" class="inline-block bg-white text-pit font-bold px-8 py-3 rounded-xl shadow-lg hover:-translate-y-1 transition">Temukan favoritmu →</a>
+  </div>
+</section>
+<section class="py-20 max-w-6xl mx-auto px-5">
+  <div class="text-right reveal"><h2 class="font-serif italic text-5xl md:text-6xl text-pit">Community & Events</h2>
+  <p class="text-pit mt-3">Sebuah ruang untuk bercerita, menghabiskan waktu, menangkan pikiran, dan berkumpul bersama.</p></div>
+  <div class="grid sm:grid-cols-3 gap-6 mt-10">
+    ${D.events.slice(0, 3).map(e => `<a href="#/events" class="reveal block text-center font-bold text-pit text-sm">
+      <div class="img-box rounded-xl aspect-square mb-3 shadow-lg">${img(e.image)}</div>${e.title}</a>`).join("")}
+  </div>
+  <div class="text-center mt-10"><a href="#/events" class="inline-block bg-pit text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:-translate-y-1 transition">Check it out →</a></div>
+</section>
+<section class="relative h-[70vh] grid place-items-center text-center text-white bg-pitd bg-cover bg-center" style="background-image:linear-gradient(#0005,#000b),url(${D.facilities[5]})">
+  <div class="reveal"><h2 class="text-5xl md:text-7xl font-medium">Pitulungan's Spaces</h2><p class="mt-3 mb-6">Fasilitas yang tersedia pada tempat kami</p>${btn("Temukan tempatmu", "#/facilities")}</div>
+</section>`,
+
+catalog: () => hero("Product Catalog") + `
+<section class="bg-pit py-16"><div class="max-w-[1800px] mx-auto px-5 md:px-12">
+  <h2 class="text-white text-4xl md:text-5xl font-bold text-center mb-12">Menu Pitulungan</h2>
+  <div class="grid md:grid-cols-[340px_1fr] gap-10 items-start">
+    <aside class="space-y-5 md:sticky md:top-24">
+      <div class="bg-white rounded-3xl p-6"><h3 class="text-pit font-bold text-2xl mb-3">Cari Menu</h3>
+        <input id="q" class="w-full border border-pit rounded-full px-5 py-3 text-lg outline-none focus:ring-2 ring-pit/40" placeholder="Ketik nama menu..."></div>
+      <div class="bg-white rounded-3xl p-6"><h3 class="text-pit font-bold text-2xl mb-4">Filter Pencarian berdasarkan kategori</h3>
+        ${D.categories.map(c => `<label class="flex items-center gap-3 text-pit text-lg font-bold py-2 cursor-pointer"><input type="checkbox" value="${c}" class="cat w-5 h-5 accent-[#18358B]"> ${c}</label>`).join("")}</div>
+    </aside>
+    <div><p id="count" class="text-white font-bold mb-3"></p>
+      <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6"></div>
+      <div class="text-center mt-8"><button id="more" class="bg-white text-pit font-bold text-sm px-8 py-3 rounded-lg hover:-translate-y-1 transition">Muat Lebih Banyak</button></div></div>
+  </div></div></section>`,
+
+facilities: () => hero("Facilities") + `
+<section class="py-16 space-y-10">
+  ${D.facilities.map((f, i) => `<div class="reveal ${i % 2 ? "" : "max-w-4xl mx-auto px-5"}"><div class="img-box ${i % 2 ? "" : "rounded-xl"} aspect-[16/9] md:aspect-[2/1]">${img(f)}</div></div>`).join("")}
+</section>`,
+
+events: () => hero("Community & Events") + `
+<section class="max-w-6xl mx-auto px-5 py-16 space-y-12">
+  ${D.events.map((e, i) => `
+  <article class="reveal grid gap-5 items-stretch ${i % 2 ? "md:grid-cols-[1fr_300px]" : "md:grid-cols-[300px_1fr]"}">
+    <div class="img-box rounded-xl aspect-square md:aspect-auto min-h-[300px] ${i % 2 ? "md:order-2" : ""}">${img(e.image)}</div>
+    <div class="border-2 border-pit rounded-3xl p-6 md:p-8 text-pit flex flex-col justify-center ${i % 2 ? "md:text-right" : ""}">
+      <h3 class="text-2xl font-bold mb-3">${e.title}</h3>
+      <p class="whitespace-pre-line">${e.text}</p>
+    </div>
+  </article>`).join("")}
+</section>`,
+
+contact: () => hero("Contact & Location") + `
+<section class="max-w-6xl mx-auto px-5 py-16 text-pit">
+  <div class="grid md:grid-cols-2 gap-10 items-center reveal">
+    <div><h2 class="text-3xl font-bold">Get In Touch</h2>
+      <p class="mt-1 mb-6">Hubungi kami untuk informasi, pertanyaan, atau reservasi, dan nikmati pengalaman terbaik bersama kami</p>
+      <ul class="space-y-5">
+        <li class="flex items-start gap-4"><span class="w-10 h-10 shrink-0 rounded-full bg-pit/10 text-pit grid place-items-center">${ICON.pin}</span>
+          <a href="${C.mapsLink}" target="_blank" rel="noopener" class="hover:underline pt-2">${C.address}</a></li>
+        <li class="flex items-center gap-4"><span class="w-10 h-10 shrink-0 rounded-full bg-pit/10 text-pit grid place-items-center">${ICON.phone}</span>
+          <a href="https://wa.me/${C.phone.replace(/\D/g, "")}" target="_blank" rel="noopener" class="hover:underline">${C.phone}</a></li>
+        <li class="flex items-center gap-4"><span class="w-10 h-10 shrink-0 rounded-full bg-pit/10 text-pit grid place-items-center">${ICON.mail}</span>
+          <a href="mailto:${C.email}" class="hover:underline">${C.email}</a></li>
+      </ul></div>
+    <div class="img-box rounded-xl aspect-[4/3]">${img(C.photos[0])}</div>
+  </div>
+  <div class="img-box rounded-xl aspect-[21/9] mt-12 reveal">${img(C.photos[1])}</div>
+  <h2 class="text-3xl font-bold mt-16">Location</h2><p class="mb-4">Temukan lokasi kami</p>
+  <iframe class="w-full h-[420px] rounded-xl border-0 shadow-lg" loading="lazy" src="${C.mapsEmbed}" allowfullscreen></iframe>
+  <a href="${C.mapsLink}" target="_blank" rel="noopener" class="inline-block mt-4 bg-pit text-white font-bold px-6 py-3 rounded-xl hover:-translate-y-1 transition">Buka di Google Maps →</a>
+</section>`
+};
+
+// catalog logic
+function initCatalog() {
+  let shown = 9;
+  const draw = () => {
+    const q = $("#q").value.toLowerCase(), cats = [...document.querySelectorAll(".cat:checked")].map(c => c.value);
+    const list = D.menu.filter(m => m.name.toLowerCase().includes(q) && (!cats.length || cats.includes(m.category)));
+    const vis = list.slice(0, shown);
+    $("#count").textContent = `${vis.length} of ${list.length} results`;
+    $("#grid").innerHTML = vis.map(m => `<div class="bg-white rounded-2xl p-3 hover:-translate-y-1 hover:shadow-2xl transition">
+      <div class="img-box rounded-xl aspect-[4/3] mb-4">${img(m.image)}</div>
+      <h4 class="text-xl">${m.name}</h4><p class="text-gray-500 text-sm">${m.desc}</p><p class="font-medium mt-1">${rp(m.price)}</p></div>`).join("") || `<p class="text-white col-span-full">Menu tidak ditemukan.</p>`;
+    $("#more").style.display = list.length > shown ? "" : "none";
+  };
+  $("#q").oninput = () => { shown = 9; draw(); };
+  document.querySelectorAll(".cat").forEach(c => c.onchange = () => { shown = 9; draw(); });
+  $("#more").onclick = () => { shown += 9; draw(); };
+  draw();
+}
+
+// router
+function route() {
+  let r = location.hash.replace("#/", "") || "home";
+  const isAbout = r === "about"; if (isAbout) r = "home";
+  $("#app").innerHTML = (pages[r] || pages.home)();
+  if (r === "catalog") initCatalog();
+  $("#mobile").classList.add("hidden");
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add("show")), { threshold: .12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  isAbout ? $("#about").scrollIntoView() : scrollTo(0, 0);
+}
+addEventListener("hashchange", route); route();
+</script>
+</body>
+</html>

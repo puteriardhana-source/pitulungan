@@ -1,0 +1,52 @@
+window.DATA = {
+  hero: "image/Hero_Image.png",
+  about: ["image/about_us_1.png", "image/about_us_2.png"],
+  cta: "image/catalog.png",
+  contact: {
+    address: "Jalan Adipura No.500, Muja Muju, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55165",
+    phone: "+6281229792055",
+    email: "pitulungan.sharesupport@pitul.com",
+    instagram: "https://www.instagram.com/pitulungan.sharingsupport",
+    tiktok: "https://www.tiktok.com/@pitulungansharingsupport",
+    mapsEmbed: "https://www.google.com/maps?q=Pitulungan+Sharing+Support+Yogyakarta&output=embed",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=Pitulungan+Sharing+Support+Yogyakarta",
+    photos: ["image/adakah.png", "image/pitulOwner.png"]
+  },
+  categories: ["Kopian", "Mocktail", "Susu Nih", "Teh Loh", "Cemilanmu"],
+  menu: [
+    { name: "Hot Americano", desc: "Bold, clean, crisp", price: 17000, category: "Kopian", image: "image/hot_americano.jpg" },
+    { name: "Cold Americano", desc: "Bold, clean, crisp", price: 22000, category: "Kopian", image: "image/ice_americano.jpg" },
+    { name: "Wild and Blanc", desc: "Sour, aromatic, and creamy", price: 30000, category: "Kopian", image: "image/wild_and_blanc.jpg" },
+    { name: "Magic", desc: "Bright, aromatic, and fruity notes", price: 22000, category: "Kopian", image: "image/magic.jpg"},
+    { name: "Latte", desc: "Smooth, silky, and mild", price: 22000, category: "Kopian", image: "image/latte.jpg"},
+    { name: "Hot Manual", desc: "Refined, nuanced notes", price: 20000, category: "Kopian", image: "image/manual.jpg"},
+    { name: "Cold Manual", desc: "Refined, nuanced notes", price: 22000, category: "Kopian", image: "image/cold_manual.jpg"},
+    { name: "Kapisa", desc: "Sweet, aromatic spice", price: 22000, category: "Kopian", image: "image/download.jpg"},
+    { name: "Kontemplasi", desc: "Sweet, with hazelnut or butterscotch?", price: 22000, category: "Kopian", image: "image/download.jpg" },
+    { name: "Sa Pu Kopi Susu", desc: "Rich, creamy signature", price: 20000, category: "Kopian", image: "image/download.jpg" },
+    { name: "Dirty Latte", desc: "Deep, creamy, and cold", price: 20000, category: "Kopian", image: "image/dirty.jpg" },
+    { name: "Lembayung Kelopak Merah", desc: "Tart, fizzy floral bloom", price: 25000, category: "Mocktail", image: "image/cocktail.jpg" },
+    { name: "Udyana", desc: "Spiced, tangy berry fizz", price: 25000, category: "Mocktail", image: "image/cocktail.jpg" },
+    { name: "Gaura", desc: "Bold, spiced coffee zing", price: 25000, category: "Mocktail", image: "image/cocktail.jpg" },
+    { name: "Matcha", desc: "Earthy, creamy delight", price: 25000, category: "Susu Nih", image: "image/matcha.jpg" },
+    { name: "Chocolate", desc: "Rich, indulgent cocoa", price: 22000, category: "Susu Nih", image: "image/chocolate.jpg" },
+    { name: "Osmanthus Milk Tea", desc: "Floral, creamy, aromatic", price: 22000, category: "Susu Nih", image: "image/Osmanthus_tea.jpg" },
+    { name: "Milky Pop", desc: "Creamy, soft, melted", price: 22000, category: "Susu Nih", image: "image/milky_pop.jpg" },
+    { name: "The G Of Milk Tea", desc: "Creamy, aromatic, melted", price: 20000, category: "Susu Nih", image: "image/milk_tea.jpg" },
+    { name: "Chamomile", desc: "Calming, herbal notes", price: 16000, category: "Teh Loh", image: "image/chamonile_tea.jpg" },
+    { name: "Jasmine Tea", desc: "Aromatic, floral brew", price: 10000, category: "Teh Loh", image: "image/jasmine_tea.jpg" },
+    { name: "Mix Platter", desc: "Savory, crispy variety", price: 25000, category: "Cemilanmu", image: "image/mix_platter.jpg" },
+    { name: "Kwentang", desc: "Golden, crunchy bites", price: 20000, category: "Cemilanmu", image: "image/kwentang.jpg" },
+    { name: "Tahu Tuna", desc: "Savory, umami seafood", price: 20000, category: "Cemilanmu", image: "image/tahu_tuna.jpg" },
+    { name: "Cireng", desc: "Crispy, chewy local gem", price: 20000, category: "Cemilanmu", image: "image/cireng.jpg" }
+  ],
+  events: [
+    { title: "1st Anniversary of Us!", image: "image/first_Anniv.png",
+      text: "COME FIRST. GET IN. PAY 7K.\nThe first 7 customers get ANY MENU FOR JUST 7K!\n\nMiss the first 7? Still a deal for you:\n→ Menu above 17K? Pay only 17K.\n→ Menu 17K or below? Regular price.\nSo.. why wait?\nBE ONE OF THE FIRST 7.\nCOME FIRST, GET YOUR 7K :D" },
+    { title: "Hallowens at Pitulungan", image: "image/Hallowens_at_pitul.png",
+      text: "Ready for the most thrilling weekend of the year? 🎃👻 Dust off your best costumes and step into the ultimate HALLOWEEN experience at Pitulungan! This isn’t just a party; it’s a two-day celebration of music, art, and mystery.\n\nImmerse yourself in epic live performances, get your future read at our Tarot booth, and witness Spontaneous Fine Art come to life! 🎨🔮\n🗓 28 — 29 October 2026\n📍 Pitulungan Sharing Support\n\n🔥 What’s waiting for you:\n🎸 28 OCT: Feel the energy with special set 2nd WAS THE BUFF & THE ADIPURA’S!\n🎧 29 OCT: Dance the night away with GEMPIP and trick-or-treat with us!\n\nTag your weekend squad and make sure you’re part of the madness. You definitely don’t want to miss this! 🦇👇"},
+    { title: "National Batik day", image: "image/Batik_day.png",
+      text: "BATIK DAY — OCTOBER 2, 2026\nWear your batik or batik-inspired outfit and get a special deal!\nAny purchase above IDR 20K → PAY ONLY IDR 20K!\n\nTerms & conditions apply." }
+  ],
+  facilities: ["image/20260925_183055.jpg", "image/20260925_183213.jpg", "image/20260925_183321.jpg", "image/20260925_183255.jpg", "image/20260925_184125.jpg", "image/space.jpg"]
+};
